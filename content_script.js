@@ -5,11 +5,13 @@ async function addTenor() {
     const checkElement = document.querySelector(".vk-tenor")
     if (checkElement) checkElement.remove() 
 
-    const html = document.createElement('div')
-    html.innerHTML = (await (await fetch(browser.runtime.getURL("tenor.html"))).text())
-    //document.body.prepend(html.firstChild)
     const vkTextEdit = document.body.querySelector(".im-chat-input--text")
     const vkButtons = document.body.querySelector(".im_chat-input--buttons")
+
+    if (vkTextEdit === null || vkButtons === null) return
+    document.body.removeEventListener("click", addTenor)
+    const html = document.createElement('div')
+    html.innerHTML = (await (await fetch(browser.runtime.getURL("tenor.html"))).text())
     vkButtons.prepend(html.firstChild)
 
     const wrapper = document.querySelector(".vk-tenor")
@@ -58,4 +60,5 @@ async function fetchGifs(query) {
     }
 }
 
+document.body.addEventListener("click", addTenor)
 addTenor()
