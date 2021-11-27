@@ -2,28 +2,36 @@
     position: relative;
     z-index: 10000;
     display: inline-block;
-    height: 30px;
-    width: 40px;
+    height: 36px;
+    width: 36px;
 }
 
 .vk-tenor .button {
     width: 100%;
     height: 100%;
-    border: 3px solid lightskyblue;
-    color: lightskyblue;
-    background-color: aliceblue;
-    border-radius: 10px;
+    padding: 0;
+    border: none;
+    color: #828a99;
+    background-color: transparent;
+    cursor: pointer;
+    /*border:2px solid #828a99; border-radius: 10px;*/
 }
 
-.popup {
+.vk-tenor .button:hover {
+    color: hsl(218, 19%, 64%)
+}
+
+.vk-tenor .popup {
+    cursor: initial;
     display: flex;
     position: absolute;
-    top: 30px;
+    bottom: 30px;
     left: 0;
+    padding: 10px;
     background-color: white;
     border-radius: 10px;
-    width: 400px;
     max-height: 300px;
+    width: 432px;
     overflow-y: scroll;
     box-shadow: 0 4px 8px rgb(48, 48, 48);
     flex-direction: column;
@@ -32,32 +40,31 @@
     transition: all 0.2s;
 }
 
-.popup.hidden {
+.vk-tenor .popup.hidden {
     opacity: 0;
     pointer-events: none;
     transition: all 0.2s;
 }
 
-.searchbar {
-    background-color: lightgray;
-    border-radius: 15px;
-    height: 30px;
-    border: none;
-    padding-left: 30px;
+.vk-tenor .searchbar {
+    margin: 0;
+    padding: 10px;
 }
 
-.gifbins-container {
+.vk-tenor .gifbins-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
 
 }
 
-.gifbin {
+.vk-tenor .gifbin {
     display: flex;
     flex-direction: column;
 }
 
-.gif {
+.vk-tenor .gif {
+    cursor: pointer;
     border-radius: 10px;
+    width: 200px;
     margin: 5px
 }

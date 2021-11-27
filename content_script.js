@@ -1,8 +1,16 @@
+console.log("hello vk")
+
 // Put all the javascript code here, that you want to execute after page load
 async function addTenor() {
+    const checkElement = document.querySelector(".vk-tenor")
+    if (checkElement) checkElement.remove() 
+
     const html = document.createElement('div')
     html.innerHTML = (await (await fetch(browser.runtime.getURL("tenor.html"))).text())
-    document.body.prepend(html.firstChild)
+    //document.body.prepend(html.firstChild)
+    const vkTextEdit = document.body.querySelector(".im-chat-input--text")
+    const vkButtons = document.body.querySelector(".im_chat-input--buttons")
+    vkButtons.prepend(html.firstChild)
 
     const wrapper = document.querySelector(".vk-tenor")
     const button = wrapper.querySelector(".button")
@@ -25,6 +33,14 @@ async function addTenor() {
         for (const gif of gifs) {
             const gifElement = gifTemplate.content.firstElementChild.cloneNode(true);
             gifElement.src = gif.media[0].tinygif.url
+            const clickHandler = () => {
+                console.log(gif.media[0].gif.url)
+                const text = vkTextEdit.textContent
+                vkTextEdit.textContent = gif.media[0].gif.url
+                vkTextEdit.dispatchEvent(new Event("paste"))
+                popup.classList.toggle("hidden")
+            }
+            gifElement.addEventListener("click", clickHandler)
             gifbins[currentBin++].append(gifElement)
             currentBin = currentBin % gifbins.length
         }
